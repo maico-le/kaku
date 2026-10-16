@@ -1,0 +1,88 @@
+name: Build & Release Kaku APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Patch Deprecated ProGuard in Pub Dependencies
+        run: |
+          find "$HOME/.pub-cache" -name "build.gradle" -exec sed -i 's/proguard-android\.txt/proguard-android-optimize.txt/g' {} + || true
+
+      - name: Analyze Project
+        run: flutter analyze
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Release APK
+        run: flutter build apk --release
+
+      - name: Determine Version Tag
+        id: version_step
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF#refs/tags/}"
+          else
+            TAG_NAME="v1.0.${{ github.run_number }}"
+          fi
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "Release tag: $TAG_NAME"
+
+      - name: Upload APK to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version_step.outputs.tag_name }}
+          name: Kaku ${{ steps.version_step.outputs.tag_name }}
+          body: |
+            ### ✍️ Bản cập nhật Kaku (書く) ${{ steps.version_step.outputs.tag_name }}
+            
+            - **Commit**: `${{ github.sha }}`
+            - **Tính năng nổi bật**:
+              - 🇯🇵 Luyện viết ngón tay với 3 hệ chữ: **Hiragana**, **Katakana** và **Kanji JLPT N5 / N4**.
+              - 📐 So khớp và chấm chuẩn theo thứ tự và hướng nét **KanjiVG** (CC BY-SA 3.0).
+              - 🧭 Báo lỗi thông minh: Sai thứ tự (báo viết sau nét mấy), Sai hướng, Sai hình dạng.
+              - 🎯 3 chế độ: **Xem mẫu (Demo)**, **Tô theo (Trace)** và **Tự viết (Recall)**.
+              - 📊 Theo dõi tiến độ & danh sách chữ hay viết sai để ôn luyện.
+              - 📴 100% Offline, không backend, tích hợp font **Noto Sans JP**.
+            
+            Nhấn tải file **`app-release.apk`** bên dưới để cài đặt trên điện thoại Android.
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
