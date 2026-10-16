@@ -294,12 +294,24 @@ class SettingsScreen extends ConsumerWidget {
             Text('v1.0.0', style: TextStyle(fontSize: 14, color: Colors.grey)),
           ],
         ),
-        content: const SingleChildScrollView(
+        content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    'assets/icon/app_icon.png',
+                    width: 72,
+                    height: 72,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              const Text(
                 'Ứng dụng luyện viết chữ Nhật (Hiragana, Katakana, Kanji JLPT N5 & N4) bằng ngón tay với thuật toán so khớp thứ tự và hướng nét KanjiVG chuẩn xác.',
                 style: TextStyle(fontSize: 14),
               ),

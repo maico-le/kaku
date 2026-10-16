@@ -61,15 +61,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with SingleTickerProvid
 
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            ClipRRect(
+              borderRadius: BorderRadius.circular(7),
+              child: Image.asset(
+                'assets/icon/app_icon.png',
+                width: 26,
+                height: 26,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Text(
               'Kaku',
               style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
             ),
-            SizedBox(width: 6),
-            Text(
+            const SizedBox(width: 6),
+            const Text(
               '書く',
               style: TextStyle(
                 fontFamily: AppTheme.fontFamily,

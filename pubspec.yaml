@@ -59,6 +59,8 @@ flutter:
 
   assets:
     - assets/data/
+    - assets/icon/
+    - assets/images/
 
   fonts:
     - family: Noto Sans JP
