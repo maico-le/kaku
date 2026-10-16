@@ -1,4 +1,23 @@
-# Kaku (書く)
+<div align="center">
+
+<img src="assets/icon/app_icon.png" width="128" height="128" alt="Kaku Logo" />
+
+# 🇯🇵 Kaku (書く)
+### *Luyện viết chữ Nhật thông minh trên di động với KanjiVG*
+
+[![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/maico-le/kaku/releases)
+[![Version](https://img.shields.io/badge/Version-v1.0.0-FA520F?style=for-the-badge)](https://github.com/maico-le/kaku/releases/latest)
+[![Mode](https://img.shields.io/badge/Mode-100%25_Offline-blue?style=for-the-badge)](#)
+[![No Ads](https://img.shields.io/badge/Ads-Free-brightgreen?style=for-the-badge)](#)
+
+<br/>
+
+### 📲 [👉 TẢI NGAY BẢN CÀI ĐẶT KAKU APK CHO ANDROID (TRỰC TIẾP) 👈](https://github.com/maico-le/kaku/releases/latest/download/app-release.apk)
+*Hoặc xem các bản cập nhật và changelog tại trang [GitHub Releases](https://github.com/maico-le/kaku/releases).*
+
+---
+
+</div>
 
 Ứng dụng Flutter cá nhân luyện viết chữ Nhật (Hiragana, Katakana, Kanji JLPT N5 & N4) bằng cách **vẽ bằng ngón tay**, so khớp với thứ tự và hướng nét chuẩn từ **KanjiVG** rồi chấm đúng/sai từng nét theo thời gian thực.
 
@@ -33,6 +52,15 @@ Hoạt động hoàn toàn **offline**, không phụ thuộc backend.
    - Bật/tắt rung (Haptic feedback) và âm thanh.
    - Chế độ Sáng / Tối (Dark / Light) hoặc theo hệ thống.
    - Xóa toàn bộ dữ liệu tiến độ.
+
+---
+
+## 📥 Hướng Dẫn Cài Đặt Nhanh (Android)
+
+1. Nhấn tải file cài đặt trực tiếp: [**Kaku APK (Mới nhất)**](https://github.com/maico-le/kaku/releases/latest/download/app-release.apk).
+2. Sau khi tải về, mở file `.apk` và nhấn **Cài đặt**.
+   *(Nếu hệ điều hành Android hỏi quyền, bật **Cho phép từ nguồn này** cho trình duyệt)*.
+3. Mở **Kaku** và bắt đầu luyện viết chữ Nhật ngay lập tức!
 
 ---
 
